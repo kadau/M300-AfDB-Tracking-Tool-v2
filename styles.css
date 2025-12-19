@@ -1,0 +1,389 @@
+/* ================= GLOBAL ================= */
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f6f5;
+  color: #222;
+}
+
+h1, h2 {
+  margin: 0;
+}
+
+/* ================= HEADER ================= */
+
+.topbar {
+  background: #0b7d3e;
+  color: #fff;
+  padding: 12px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo {
+  height: 36px;
+}
+
+.topbar button {
+  background: #ffffff;
+  color: #0b7d3e;
+  border: none;
+  padding: 8px 14px;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* ================= LAYOUT ================= */
+
+.layout {
+  display: flex;
+  height: calc(100vh - 64px);
+}
+
+/* ================= SIDEBAR ================= */
+
+.sidebar {
+  width: 220px;
+  background: #e9f4ec;
+  padding: 16px;
+}
+
+.sidebar .tab {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 10px;
+  border: none;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.sidebar .tab.active {
+  background: #0b7d3e;
+  color: #fff;
+  border-radius: 4px;
+}
+
+/* ================= MAIN ================= */
+
+main {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.tab-panel {
+  display: none;
+}
+
+.tab-panel.active {
+  display: block;
+}
+
+/* ================= KPI ================= */
+
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.kpi {
+  background: #fff;
+  border-radius: 8px;
+  padding: 14px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.kpi-icon {
+  font-size: 32px;
+}
+
+.kpi-value {
+  font-size: 22px;
+  font-weight: bold;
+  color: #0b7d3e;
+}
+
+.kpi-label {
+  font-size: 13px;
+  color: #555;
+}
+
+/* ================= CARDS ================= */
+
+.card {
+  background: #fff;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 24px;
+}
+
+.card h2 {
+  margin-bottom: 12px;
+  font-size: 16px;
+}
+/* ================= CHART ================= */
+
+.mission-chart-wrapper {
+  height: 360px;        /* ✅ hauteur maîtrisée */
+  padding: 10px 20px;
+}
+
+#mission300Chart {
+  max-height: 320px;    /* ✅ limite réelle */
+}
+.map-title {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 8px 12px;
+  font-weight: bold;
+  font-size: 14px;
+  border-radius: 4px;
+  box-shadow: 0 0 6px rgba(0,0,0,0.2);
+}
+
+
+/* ================= MAP ================= */
+#mission300Map {
+  height: 520px;
+  width: 100%;
+  border-radius: 8px;
+}
+
+.map-container {
+  height: 420px;
+  border-radius: 8px;
+  margin-bottom: 24px;
+}
+.map-title {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 8px 12px;
+  font-weight: bold;
+  font-size: 14px;
+  border-radius: 4px;
+  box-shadow: 0 0 6px rgba(0,0,0,0.2);
+}
+
+
+/* =========================================================
+   M300 TABLES – STRICT FORMAT
+========================================================= */
+
+.m300-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 12px;
+  font-size: 14px;
+}
+
+.m300-table th {
+  background: #eef7f1;
+  color: #000;
+  text-align: center;
+  padding: 8px;
+  border: 1px solid #d5e6dc;
+  font-weight: 600;
+}
+
+.m300-table td {
+  padding: 8px;
+  border: 1px solid #e5efe9;
+}
+
+.m300-table td.num {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.m300-table tbody tr:nth-child(even) {
+  background: #fafdfb;
+}
+
+.table-title {
+  color: #0b7d3e;
+  margin: 20px 0 6px 0;
+  font-size: 18px;
+}
+
+
+/* ================= TABLES ================= */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  background: #eaf3ee;
+  border: 1px solid #cfded4;
+  padding: 8px;
+  text-align: center;
+  font-weight: bold;
+}
+
+td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: right;
+}
+
+td:first-child {
+  text-align: left;
+  font-weight: bold;
+}
+
+tr.highlight {
+  background: #f1f8f4;
+}
+
+/* ================= GAUGES (OKI) ================= */
+/* =========================================================
+   OKI – GAUGES LAYOUT (ONE ROW, NO SCROLL)
+========================================================= */
+
+#kpisOKI {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 jauges */
+  gap: 20px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.kpi-oki {
+  display: flex;
+  align-items: center;
+  padding: 16px 18px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  min-width: 0; /* empêche overflow */
+}
+
+.kpi-oki .kpi-icon {
+  font-size: 28px;
+  margin-right: 14px;
+}
+
+.kpi-oki .kpi-body {
+  flex: 1;
+}
+
+.kpi-oki .kpi-value {
+  font-size: 20px;
+  font-weight: 700;
+  color: #0b7d3e;
+}
+
+.kpi-oki .kpi-label {
+  font-size: 13px;
+  color: #444;
+  line-height: 1.3;
+}
+
+.kpi-oki .kpi-sub {
+  font-size: 12px;
+  color: #666;
+}
+
+.kpi-oki .gauge {
+  margin-top: 8px;
+  height: 8px;
+  background: #e0e0e0;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.kpi-oki .gauge span {
+  display: block;
+  height: 100%;
+  background: #0b7d3e;
+  border-radius: 4px;
+}
+
+
+.gauge {
+  height: 8px;
+  background: #ddd;
+  border-radius: 4px;
+  margin-top: 6px;
+  overflow: hidden;
+}
+
+.gauge span {
+  display: block;
+  height: 100%;
+  background: #0b7d3e;
+}
+
+/* ============================
+   OKI MAP – VISIBILITY FIX
+============================ */
+
+#okiMap {
+  height: 520px;
+  width: 100%;
+  border-radius: 8px;
+}
+
+.map-filter {
+  background: white;
+  padding: 8px;
+  border-radius: 6px;
+  font-size: 13px;
+}
+
+.map-title {
+  background: white;
+  padding: 6px 10px;
+  font-weight: bold;
+  border-radius: 6px;
+}
+
+
+/* ================= LINKS ================= */
+
+a {
+  color: #0b7d3e;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Search input for Details by project */
+.table-search {
+  width: 100%;
+  max-width: 420px;
+  padding: 8px 10px;
+  margin-bottom: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+/* Align left (default: no wrap) */
+.align-left {
+  text-align: left !important;
+  white-space: nowrap;
+}
+
+/* Project name: allow wrapping */
+td.align-left a {
+  white-space: normal;
+  line-height: 1.35;
+}
+

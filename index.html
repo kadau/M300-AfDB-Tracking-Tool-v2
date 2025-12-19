@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>M300 AfDB Tracking Tool</title>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="lib/leaflet.css">
+
+  <!-- Libraries -->
+  <script src="lib/xlsx.full.min.js"></script>
+  <script src="lib/chart.min.js"></script>
+  <script src="lib/leaflet.js"></script>
+</head>
+
+<body>
+
+  <!-- ================= HEADER ================= -->
+  <header class="topbar">
+    <div class="topbar-left">
+      <img src="logo-afdb.png" alt="AfDB Logo" class="logo">
+      <h1>M300 AfDB Tracking Tool</h1>
+    </div>
+    <button id="exportExcel">Export to Excel</button>
+  </header>
+
+  <!-- ================= LAYOUT ================= -->
+  <div class="layout">
+
+    <!-- ===== Sidebar ===== -->
+    <aside class="sidebar">
+      <button class="tab active" data-tab="mission">Mission 300</button>
+      <button class="tab" data-tab="oki">Others key indicators</button>
+      <button class="tab" data-tab="details">Details by project</button>
+    </aside>
+
+    <!-- ===== Main content ===== -->
+    <main>
+
+      <!-- ================= MISSION 300 ================= -->
+      <section id="mission" class="tab-panel active">
+
+        <!-- KPIs -->
+        <div id="kpisMission" class="kpi-grid"></div>
+
+        <!-- Chart -->
+        <div class="mission-chart-wrapper">
+          <canvas id="mission300Chart"></canvas>
+        </div>
+
+        <!-- Map -->
+        <div id="mission300Map" class="map-container"></div>
+
+        <!-- Table A -->
+        <div class="card">
+          <h2>Number of electricity connections</h2>
+          <div id="tableConnections"></div>
+        </div>
+
+        <!-- Table B -->
+        <div class="card">
+          <h2>People provided with access to electricity</h2>
+          <div id="tablePeople"></div>
+        </div>
+
+      </section>
+
+      <!-- ================= OTHERS KEY INDICATORS ================= -->
+      <section id="oki" class="tab-panel">
+
+        <!-- KPIs + gauges -->
+        <div id="kpisOKI" class="kpi-grid"></div>
+
+        <!-- Map -->
+
+        <div id="okiMap"></div>
+
+        <div id="okiMap" class="map-container"></div>
+
+      </section>
+
+      <!-- ================= DETAILS BY PROJECT ================= -->
+      <section id="details" class="tab-panel">
+
+        <div class="card">
+          <h2>Details by project</h2>
+          <div id="detailsTable"></div>
+        </div>
+
+      </section>
+
+    </main>
+  </div>
+
+  <!-- ================= SCRIPTS ================= -->
+  <!-- ORDER IS IMPORTANT -->
+  <script src="app.part1.js"></script>
+  <script src="app.part2.js"></script>
+  <script src="app.part3.js"></script>
+  <script src="app.part4.js"></script>
+  <script src="app.part5.js"></script>
+
+</body>
+</html>
