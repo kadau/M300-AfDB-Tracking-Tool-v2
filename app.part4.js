@@ -292,6 +292,62 @@ function renderTableB_PeopleAccess(rows) {
   document.getElementById("tablePeople").innerHTML = html;
 }
 
+function renderTableB_PeopleAccess(rows) {
+
+  const SYSTEMS = [
+    { label: "All supply systems", filter: r => true },
+    { label: "On-grid", filter: r => r["Sub-indicators"] === "On-grid" },
+    { label: "Mini-grid", filter: r => r["Sub-indicators"] === "Mini-grid" },
+    { label: "Off-grid", filter: r => r["Sub-indicators"] === "Off-grid" }
+  ];
+
+  let html = `
+  <h3 class="table-title">People provided with access to electricity</h3>
+  <table class="m300-table">
+    <thead>
+      <tr>
+        <th rowspan="2">Indicator</th>
+        ${SYSTEMS.map(s => `<th colspan="2">${s.label}</th>`).join("")}
+      </tr>
+      <tr>
+        ${SYSTEMS.map(() => `<th>Expected</th><th>Delivered</th>`).join("")}
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Households</td>
+  `;
+
+  SYSTEMS.forEach(sys => {
+    const expected = sumWhere(
+      rows,
+      r =>
+        r["Expected/Delivered"] === "Expected" &&
+        r["Global/Milestone"] === "Global" &&
+        r["Sub-Sub-indicators"] === "Households" &&
+        sys.filter(r),
+      " People provided with access to electricity "
+    );
+
+    const delivered = sumWhere(
+      rows,
+      r =>
+        r["Expected/Delivered"] === "Delivered" &&
+        r["Global/Milestone"] === "Global" &&
+        r["Sub-Sub-indicators"] === "Households" &&
+        sys.filter(r),
+      " People provided with access to electricity "
+    );
+
+    html += `<td class="num">${fmt(expected)}</td>
+             <td class="num">${fmt(delivered)}</td>`;
+  });
+
+  html += `</tr></tbody></table>`;
+
+  document.getElementById("tablePeople").innerHTML = html;
+}
+
 function renderDetailsByProject() {
 
   const container = document.getElementById("detailsTable");
@@ -299,11 +355,15 @@ function renderDetailsByProject() {
 
   const map = {};
 
-  // ===============================
-  // AGGREGATION PAR PROJECT CODE
-  // ===============================
+  /* ===============================
+     AGGREGATION PAR PROJECT CODE
+     + CONDITION Households
+  =============================== */
   rawRows
-    .filter(r => r["Global/Milestone"] === "Global")
+    .filter(r =>
+      r["Global/Milestone"] === "Global" &&
+      r["Sub-Sub-indicators"] === "Households"
+    )
     .forEach(r => {
 
       const code = r["Project Code"];
@@ -321,8 +381,15 @@ function renderDetailsByProject() {
         };
       }
 
-      const conn = safeNum(r[" Number of electricity connections "]);
-      const ppl  = safeNum(r[" People provided with access to electricity "]);
+      const conn = safeNum(
+        r[" Number of electricity connections "] ??
+        r["Number of electricity connections"]
+      );
+
+      const ppl = safeNum(
+        r[" People provided with access to electricity "] ??
+        r["People provided with access to electricity"]
+      );
 
       if (r["Expected/Delivered"] === "Expected") {
         map[code].ce += conn;
@@ -336,9 +403,9 @@ function renderDetailsByProject() {
   const fmtInt = n =>
     Math.round(Number(n || 0)).toLocaleString("en-US");
 
-  // ===============================
-  // HTML (SEARCH + TABLE)
-  // ===============================
+  /* ===============================
+     HTML (SEARCH + TABLE)
+  =============================== */
   let html = `
     <input
       type="text"
@@ -398,9 +465,9 @@ function renderDetailsByProject() {
 
   container.innerHTML = html;
 
-  // ===============================
-  // SEARCH LOGIC (FIRST 4 COLUMNS)
-  // ===============================
+  /* ===============================
+     SEARCH (FIRST 4 COLUMNS)
+  =============================== */
   const searchInput = document.getElementById("detailsSearch");
   const rows = container.querySelectorAll("tbody tr");
 
