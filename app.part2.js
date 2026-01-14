@@ -53,7 +53,8 @@ function renderMissionKPIs(){
     <div class="kpi"><div class="kpi-icon">➕</div><div><div class="kpi-value">${fmtShort(k.kpi3)}</div><div class="kpi-label">Additional expected</div></div></div>
     <div class="kpi"><div class="kpi-icon">🎯</div><div><div class="kpi-value">50.0 million</div><div class="kpi-label">Target</div></div></div>
     <div class="kpi"><div class="kpi-icon">📊</div><div><div class="kpi-value">${(((k.kpi2+k.kpi3)/TARGET)*100).toFixed(1)}%</div><div class="kpi-label">Progress</div></div></div>
-    <div class="kpi"><div class="kpi-icon">💰</div><div><div class="kpi-value">${fmtShort(k.kpi6)}</div><div class="kpi-label">Total investment<br>Bank contribution ${fmtShort(k.kpi6b)}</div></div></div>
+    <div class="kpi"><div class="kpi-icon usd-icon">$</div><div><div class="kpi-value">${fmtShort(k.kpi6)}</div><div class="kpi-label">Total investment<br>Bank contribution: ${fmtShort(k.kpi6b)}</div></div></div>
   `;
 }
+
 
